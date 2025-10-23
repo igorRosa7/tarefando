@@ -1,13 +1,31 @@
 import './App.css'
-import React, { useState } from 'react';
+import React, { useState , useEffect, useRef} from 'react';
+import { Toast } from 'primereact/toast';
 import type { Task } from './types/task';
-import Header from './Components/header'
 import TaskForm from './Components/TaskForm/TaskForm'
 import TaskList from './Components/TaskList/TaskList'
-
+import { Panel } from 'primereact/panel';
+import AppLayout from './Components/AppLayout/AppLayout';
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const toast = useRef<Toast>(null);
+
+
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem('tasks');
+    if (savedTasks) {
+      const parsedTasks = JSON.parse(savedTasks) as Task[];
+      return parsedTasks.map(task => ({
+        ...task, // Copia todas as chaves (id, title, description, status)
+        createdAt: new Date(task.createdAt), // E sobrescreve o createdAt, convertendo a string em Date
+      }));
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   //Nas funções abaixo, o setTasks está sendo utilizado para atualizar o estado das tarefas com base nas ações do usuário
   //TaskList é o intermediário entre o App e o TaskItem, passando as funções como props para que possam ser chamadas nos componentes filhos
@@ -22,6 +40,12 @@ function App() {
       createdAt: new Date(),
     };
     setTasks((prevTasks) => [newTask, ...prevTasks]);
+    toast.current?.show({ 
+      severity: 'success', 
+      summary: 'Sucesso!', 
+      detail: 'Tarefa adicionada.', 
+      life: 3000
+    });
   };
 
   
@@ -44,9 +68,20 @@ function App() {
 
   return (
     <>
-      <Header />
-      <TaskForm onAddTask={handleAddTask} />
-      <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} onToggleComplete={handleToggleComplete} />
+    <Toast ref={toast} />
+    <AppLayout>
+      <TaskForm 
+          onAddTask={handleAddTask} 
+          toastRef={toast} 
+        />
+    <TaskList
+          tasks={tasks}
+          onDeleteTask={handleDeleteTask}
+          onToggleComplete={handleToggleComplete}
+        />
+    </AppLayout>
+  
+
 
     </>
   )

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { FormContainer } from './TaskForm.styled';
+import { Button } from 'primereact/button';
+import type { RefObject } from 'react';
+import type { Toast } from 'primereact/toast';
 
 interface TaskFormProps {
   onAddTask: (title: string, description: string) => void;
+  toastRef: RefObject<Toast | null>;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
@@ -51,7 +55,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
         />
       </div>
 
-      <button type="submit">Adicionar Tarefa</button>
+      <Button type="submit" label="Adicionar Tarefa" severity="success" />
 
     </FormContainer>
   );
