@@ -1,16 +1,10 @@
-// src/Components/TaskControls/TaskControls.tsx
 import React from 'react';
-
-// 1. Imports do PrimeReact
-import { SelectButton, type SelectButtonChangeEvent } from 'primereact/selectbutton';
+import { SelectButton, type SelectButtonChangeEvent } from 'primereact/selectbutton'; //ver o que faz
 import { InputText } from 'primereact/inputtext';
-
-// 2. Importe o estilo
 import { ControlsContainer } from './TaskControls.styled';
 
-// 3. Defina as props (o "contrato") que o App.tsx deve seguir
 interface TaskControlsProps {
-  filterOptions: any[]; // As opções (Todas, Pendentes, etc.)
+  filterOptions: any[]; // As opções (Todas, Pendentes, etc.) pq precisa disso?
   filterStatus: string;
   onFilterChange: (e: SelectButtonChangeEvent) => void;
   searchTerm: string;
@@ -26,11 +20,10 @@ const TaskControls: React.FC<TaskControlsProps> = ({
 }) => {
   return (
     <ControlsContainer>
-      
-      {/* 4. O Filtro */}
+
       <div className="filter-group">
         <SelectButton 
-          value={filterStatus} 
+          value={filterStatus}
           options={filterOptions} 
           onChange={onFilterChange} 
           optionLabel="label" // Diz ao PrimeReact para usar a 'label' como texto
@@ -38,7 +31,7 @@ const TaskControls: React.FC<TaskControlsProps> = ({
         />
       </div>
 
-      {/* 5. A Busca */}
+     
       <div className="search-group p-input-icon-left">
         <i className="pi pi-search" />
         <InputText 

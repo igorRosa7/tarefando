@@ -98,33 +98,36 @@ function App() {
   return (
     <>
     <Toast ref={toast} />
-    <AppLayout>
-      <TaskForm 
-          onAddTask={handleAddTask} 
-          toastRef={toast} 
-        />
-
-        <TaskControls
-          filterOptions={filterOptions}
-          filterStatus={filterStatus}
-          onFilterChange={(e: SelectButtonChangeEvent) => setFilterStatus(e.value)}
-          searchTerm={searchTerm}
-          onSearchChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
-        />
-       
-        
+    <AppLayout
+      mainContent={
+        <>
         <TaskCounter tasks={filteredTasks} />
-
-    <TaskList
-          tasks={filteredTasks}
-          onDeleteTask={handleDeleteTask}
-          onToggleComplete={handleToggleComplete}
-        />
-    </AppLayout>
-  
-
-
-    </>
+        <TaskList
+            tasks={filteredTasks}
+            onDeleteTask={handleDeleteTask}
+            onToggleComplete={handleToggleComplete}
+          />
+        </>
+        }
+        sidebar={
+          <>
+          <TaskForm 
+              onAddTask={handleAddTask} 
+              toastRef={toast} 
+            />
+          <TaskControls
+            filterOptions={filterOptions}
+            filterStatus={filterStatus}
+            onFilterChange={(e: SelectButtonChangeEvent) => setFilterStatus(e.value)}
+            searchTerm={searchTerm}
+            onSearchChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+          />
+          </>
+            
+            }
+          />
+          
+      </>
   )
 }
 

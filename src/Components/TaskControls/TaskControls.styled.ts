@@ -1,8 +1,7 @@
-// src/Components/TaskControls/TaskControls.styles.ts
 import styled from 'styled-components';
 
 export const ControlsContainer = styled.div`
-  /* Usando as variáveis do tema PrimeReact */
+  
   background-color: var(--surface-card);
   border: 1px solid var(--surface-border);
   border-radius: 8px;
@@ -11,7 +10,7 @@ export const ControlsContainer = styled.div`
   
   display: flex;
   flex-wrap: wrap; /* Permite quebrar em telas pequenas */
-  gap: 1.5rem; /* Espaço entre o filtro e a busca */
+  gap: 1.5rem; 
   align-items: center;
 
   .filter-group {
@@ -21,5 +20,13 @@ export const ControlsContainer = styled.div`
   .search-group {
     flex-grow: 2; /* Tenta ocupar o dobro de espaço do filtro */
     min-width: 250px; /* Garante que o campo de busca não seja esmagado */
+    width: 100%;
+    .p-inputtext { 
+      padding-left: 2.5rem; 
+    }
+    i {
+      left: 0.75rem; 
+      color: var(--text-color-secondary); 
+    }
   }
 `;
