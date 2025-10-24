@@ -6,10 +6,20 @@ import TaskForm from './Components/TaskForm/TaskForm'
 import TaskList from './Components/TaskList/TaskList'
 import AppLayout from './Components/AppLayout/AppLayout';
 import TaskCounter from './Components/TaskCounter/TaskCounter';
+import type { SelectButtonChangeEvent } from 'primereact/selectbutton';
+import TaskControls from './Components/TaskControls/TaskControls';
+
+type TaskStatusFilter = 'all' | 'pending' | 'completed';
+
+const filterOptions = [
+    { label: 'Todas', value: 'all' },
+    { label: 'Pendentes', value: 'pending' },
+    { label: 'Concluídas', value: 'completed' }
+];
 
 function App() {
-  const toast = useRef<Toast>(null);
 
+  const toast = useRef<Toast>(null);
 
   const [tasks, setTasks] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem('tasks');
@@ -22,6 +32,9 @@ function App() {
     }
     return [];
   });
+
+  const [filterStatus, setFilterStatus] = useState<TaskStatusFilter>('all');
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -66,6 +79,22 @@ function App() {
     );
   };
 
+  // filtrando pelo STATUS da tarefa. Essa lista filtrada será passada para o componente TaskList
+  const filteredTasks = tasks
+    .filter(task => {
+      if (filterStatus === 'pending') return task.status === 'pending';
+      if (filterStatus === 'completed') return task.status === 'completed';
+      return true; // se for 'all', retorne todas
+    })
+    // filtrando pelos termos de busca no título ou descrição, depois de passar pelo filtro de status
+    .filter(task => {
+      const term = searchTerm.toLowerCase();
+      return (
+        task.title.toLowerCase().includes(term) ||
+        task.description.toLowerCase().includes(term)
+      );
+    });
+
   return (
     <>
     <Toast ref={toast} />
@@ -75,10 +104,19 @@ function App() {
           toastRef={toast} 
         />
 
-        <TaskCounter tasks={tasks} />
+        <TaskControls
+          filterOptions={filterOptions}
+          filterStatus={filterStatus}
+          onFilterChange={(e: SelectButtonChangeEvent) => setFilterStatus(e.value)}
+          searchTerm={searchTerm}
+          onSearchChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+        />
+       
         
+        <TaskCounter tasks={filteredTasks} />
+
     <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onDeleteTask={handleDeleteTask}
           onToggleComplete={handleToggleComplete}
         />
