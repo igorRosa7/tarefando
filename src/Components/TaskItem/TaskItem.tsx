@@ -1,6 +1,7 @@
 import React from 'react';
 import  type { Task } from '../../types/task';
 import { ItemContainer } from './TaskItem.styled';
+import { Button } from 'primereact/button';
 
 // Esta interface recebe o objeto task e as funções de manipulação de tarefas como props
 interface TaskItemProps {
@@ -18,8 +19,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDeleteTask, onToggleComplet
     year: 'numeric'
   });
 
+  const isCompleted = task.status === 'completed';
+
   return (
-    <ItemContainer $isCompleted={task.status === 'completed'}>
+    <ItemContainer $isCompleted={isCompleted}>
     
       <div className="task-info">
         <h3>{task.title}</h3>
@@ -29,20 +32,21 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDeleteTask, onToggleComplet
 
       <div className="task-actions">
         {/* Esse botão marca/desmarca a tarefa como concluída */}
-        <button 
-          className="toggle-btn" 
+        <Button 
+          icon={isCompleted ? "pi pi-undo" : "pi pi-check"} 
+          label={isCompleted ? "Desfazer" : "Concluir"}
+          severity="success" 
+          outlined={isCompleted} 
           onClick={() => onToggleComplete(task.id)}
-        >
-          {task.status === 'pending' ? 'Concluir' : 'Desfazer'}
-        </button>
+        />
         
         {/* Esse botão exclui a tarefa */}
-        <button 
-          className="delete-btn" 
+       <Button 
+          icon="pi pi-trash" 
+          label="Excluir"
+          severity="danger" 
           onClick={() => onDeleteTask(task.id)}
-        >
-          Excluir
-        </button>
+        />
       </div>
 
     </ItemContainer>

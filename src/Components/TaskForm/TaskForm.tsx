@@ -9,7 +9,7 @@ interface TaskFormProps {
   toastRef: RefObject<Toast | null>;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
+const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, toastRef }) => {
 
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -20,6 +20,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask }) => {
 
     if (title.trim() === '') {
       setError('O título é obrigatório.');
+      toastRef.current?.show({ severity: 'error', summary: 'Erro', detail: 'O título é obrigatório.' });
       return;
     }
 
