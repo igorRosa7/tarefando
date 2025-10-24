@@ -8,6 +8,8 @@ import AppLayout from './Components/AppLayout/AppLayout';
 import TaskCounter from './Components/TaskCounter/TaskCounter';
 import type { SelectButtonChangeEvent } from 'primereact/selectbutton';
 import TaskControls from './Components/TaskControls/TaskControls';
+import TaskStatsChart from './Components/TaskStatsChart/TaskStatsChart';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 type TaskStatusFilter = 'all' | 'pending' | 'completed';
 
@@ -63,9 +65,28 @@ function App() {
 
   
   const handleDeleteTask = (id: string) => {
-    if (window.confirm('Tem certeza que deseja excluir esta tarefa?')) {
-      setTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
-    }
+    confirmDialog({
+      message: 'Tem certeza que deseja excluir esta tarefa?', 
+      header: 'Confirmação de Exclusão', 
+      icon: 'pi pi-exclamation-triangle', 
+      acceptClassName: 'p-button-danger', 
+      acceptLabel: 'Sim', 
+      rejectLabel: 'Não', 
+      accept: () => {
+        // A LÓGICA DE EXCLUSÃO VAI AQUI DENTRO (só roda se clicar 'Sim')
+        setTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
+        // Opcional: Mostrar um toast de sucesso após excluir
+        toast.current?.show({ 
+          severity: 'info', 
+          summary: 'Excluído', 
+          detail: 'Tarefa excluída com sucesso.', 
+          life: 3000 
+        });
+      },
+      reject: () => {
+      
+      }
+    });
   };
 
   
@@ -78,6 +99,13 @@ function App() {
       )
     );
   };
+
+  const counterTasks = tasks.filter(task => {
+      const term = searchTerm.toLowerCase();
+      return term === '' || 
+             task.title.toLowerCase().includes(term) ||
+             task.description.toLowerCase().includes(term);
+      });
 
   // filtrando pelo STATUS da tarefa. Essa lista filtrada será passada para o componente TaskList
   const filteredTasks = tasks
@@ -95,13 +123,17 @@ function App() {
       );
     });
 
+  const pendingCountForChart = counterTasks.filter(task => task.status === 'pending').length;
+  const completedCountForChart = counterTasks.filter(task => task.status === 'completed').length;
+
   return (
     <>
     <Toast ref={toast} />
+    <ConfirmDialog />
     <AppLayout
       mainContent={
         <>
-        <TaskCounter tasks={filteredTasks} />
+        <TaskCounter tasks={counterTasks} />
         <TaskList
             tasks={filteredTasks}
             onDeleteTask={handleDeleteTask}
@@ -122,6 +154,10 @@ function App() {
             searchTerm={searchTerm}
             onSearchChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
           />
+          <TaskStatsChart 
+              pendingCount={pendingCountForChart} 
+              completedCount={completedCountForChart} 
+            />
           </>
             
             }

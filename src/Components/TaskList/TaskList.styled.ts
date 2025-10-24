@@ -9,10 +9,9 @@ export const ListContainer = styled.div`
 
   .empty-list-message {
     text-align: center;
-    color: #777;
+    color: #ddd;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: 1px solid var(--surface-border);
     border-radius: 8px;
-    border: 1px dashed #ddd; 
   }
 `;

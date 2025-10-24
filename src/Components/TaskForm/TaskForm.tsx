@@ -20,7 +20,11 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, toastRef }) => {
 
     if (title.trim() === '') {
       setError('O título é obrigatório.');
-      toastRef.current?.show({ severity: 'error', summary: 'Erro', detail: 'O título é obrigatório.' });
+      toastRef.current?.show({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'O título é obrigatório.'
+      });
       return;
     }
 

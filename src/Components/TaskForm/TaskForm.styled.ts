@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const FormContainer = styled.form`
   
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: var(--surface-section);
+  border: 1px solid var(--surface-border);
   border-radius: 8px;
   margin-bottom: 20px;
   display: flex;
@@ -20,14 +21,15 @@ export const FormContainer = styled.form`
   label {
     font-weight: bold;
     font-size: 0.9rem;
-    color: #333;
+    font-family: inherit;
+    color: var(--text-color);
   }
 
   input,
   textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--surface-border);
     border-radius: 4px;
     box-sizing: border-box;
   }

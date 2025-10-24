@@ -9,17 +9,17 @@ export const ControlsContainer = styled.div`
   margin-bottom: 1.5rem;
   
   display: flex;
-  flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+  flex-wrap: wrap;
   gap: 1.5rem; 
   align-items: center;
 
   .filter-group {
-    flex-grow: 1; /* Tenta ocupar mais espaço */
+    flex-grow: 1; 
   }
 
   .search-group {
-    flex-grow: 2; /* Tenta ocupar o dobro de espaço do filtro */
-    min-width: 250px; /* Garante que o campo de busca não seja esmagado */
+    flex-grow: 2; 
+    min-width: 250px; 
     width: 100%;
     .p-inputtext { 
       padding-left: 2.5rem; 
