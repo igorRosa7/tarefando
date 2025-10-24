@@ -1,11 +1,11 @@
 import './App.css'
-import React, { useState , useEffect, useRef} from 'react';
+import { useState , useEffect, useRef} from 'react';
 import { Toast } from 'primereact/toast';
 import type { Task } from './types/task';
 import TaskForm from './Components/TaskForm/TaskForm'
 import TaskList from './Components/TaskList/TaskList'
-import { Panel } from 'primereact/panel';
 import AppLayout from './Components/AppLayout/AppLayout';
+import TaskCounter from './Components/TaskCounter/TaskCounter';
 
 function App() {
   const toast = useRef<Toast>(null);
@@ -74,6 +74,9 @@ function App() {
           onAddTask={handleAddTask} 
           toastRef={toast} 
         />
+
+        <TaskCounter tasks={tasks} />
+        
     <TaskList
           tasks={tasks}
           onDeleteTask={handleDeleteTask}
