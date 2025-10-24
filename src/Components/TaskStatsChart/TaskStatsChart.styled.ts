@@ -14,4 +14,7 @@ export const ChartContainer = styled.div`
     color: var(--text-color-secondary);
     font-weight: 500; 
   }
+  @media (max-width: 768px) { 
+    display: none; 
+  }
 `;

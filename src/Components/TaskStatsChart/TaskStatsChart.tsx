@@ -8,11 +8,12 @@ interface TaskStatsChartProps {
 }
 
 const TaskStatsChart: React.FC<TaskStatsChartProps> = ({ pendingCount, completedCount }) => {
+    
     // Estado para os dados do gráfico
-    const [chartData, setChartData] = useState({});
+    const [chartData, setChartData] = useState<any>(null);
 
     // Estado para as opções de configuração
-    const [chartOptions, setChartOptions] = useState({});
+    const [chartOptions, setChartOptions] = useState<any>(null);
 
     // useEffect para recalcular QUANDO as contagens (props) mudarem
     useEffect(() => {
@@ -65,14 +66,12 @@ const TaskStatsChart: React.FC<TaskStatsChartProps> = ({ pendingCount, completed
     }, [pendingCount, completedCount]);
 
    
-    if (pendingCount === 0 && completedCount === 0) {
-        return null;
-    }
-
+   if ((pendingCount === 0 && completedCount === 0) || !chartData || !chartOptions) {
+    return null; 
+  }
     return (
         <ChartContainer>
             <h4>Visão Geral</h4>
-            {/* O componente <Chart> do PrimeReact */}
             <Chart
                 type="doughnut" // Define o tipo de gráfico
                 data={chartData}
