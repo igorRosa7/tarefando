@@ -1,3 +1,31 @@
 @import 'primereact/resources/themes/soho-dark/theme.css' layer(primereact);
 
 @import 'primeicons/primeicons.css' layer(primeicons);
+
+@media (max-width: 768px) {
+
+    .p-toast-message {
+
+        max-width: 70vw;
+    }
+
+    .p-toast-message-content {
+        padding: 0.75rem 0.80rem;
+    }
+
+    body .p-toast.p-toast-top-right {
+        margin-right: -110px;
+    }
+
+    .p-toast-summary {
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+
+    .p-toast-detail {
+        font-size: 0.8rem;
+        margin-top: 0.3rem;
+    }
+
+}

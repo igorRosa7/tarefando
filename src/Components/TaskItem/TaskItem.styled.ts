@@ -50,4 +50,27 @@ export const ItemContainer = styled.div<{ $isCompleted: boolean }>`
     flex-shrink: 0;
     gap: 0.5rem; 
   }
+  @media (max-width: 400px) {
+
+    .task-info {
+       h3 { font-size: 0.95rem; }
+       p { font-size: 0.8rem; } 
+    }
+
+    .task-actions {
+       gap: 0.3rem; 
+
+     
+      .p-button {
+        padding: 0.4rem 0.6rem; 
+        font-size: 0.75rem; 
+
+        .p-button-label {
+           display: none; 
+        }
+         padding: 0.4rem; 
+         min-width: 2.5rem; 
+      }
+    }
+  }
 `;

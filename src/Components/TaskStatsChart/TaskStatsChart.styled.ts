@@ -6,6 +6,10 @@ export const ChartContainer = styled.div`
   background-color: var(--surface-card); 
   border: 1px solid var(--surface-border); 
   border-radius: 8px; 
+  max-width: 400px;
+  max-height: 400px;
+  margin-left: auto;
+  margin-right: auto;
 
   h4 { /* Estilo para o título */
     margin-top: 0;

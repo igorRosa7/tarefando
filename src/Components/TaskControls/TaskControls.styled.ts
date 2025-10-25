@@ -16,6 +16,9 @@ export const ControlsContainer = styled.div`
   .filter-group {
     flex-grow: 1; 
   }
+  .p-selectbutton {
+         width: 100%; 
+      }
 
   .search-group {
     flex-grow: 2; 
@@ -28,5 +31,30 @@ export const ControlsContainer = styled.div`
       left: 0.75rem; 
       color: var(--text-color-secondary); 
     }
+  }
+  @media (max-width: 768px) {
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 1rem;
+
+    .filter-group {
+      width: 100%;
+     
+      .p-selectbutton .p-button {
+         flex-grow: 1;
+         font-size: 0.875rem; 
+      }
+    }
+    
+    .search-group {
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+    .p-selectbutton .p-button {
+        flex-grow: 1;
+        font-size: 0.8rem; 
+        padding: 0.5rem 0.8rem; 
+    }
+}
   }
 `;
