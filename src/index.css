@@ -2,6 +2,12 @@
 
 @import 'primeicons/primeicons.css' layer(primeicons);
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html,
 body {
     margin: 0;
@@ -10,11 +16,6 @@ body {
     overflow-x: hidden;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
 @media (max-width: 768px) {
 

@@ -10,6 +10,7 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  ;
 
   div {
     display: flex;
@@ -46,4 +47,5 @@ export const FormContainer = styled.form`
     font-size: 0.9rem;
     margin: -5px 0 5px 0;
   }
+  
 `;

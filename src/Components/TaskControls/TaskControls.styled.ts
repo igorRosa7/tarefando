@@ -23,7 +23,6 @@ export const ControlsContainer = styled.div`
   .search-group {
     flex-grow: 2; 
     min-width: 250px; 
-    width: 100%;
     .p-inputtext { 
       padding-left: 2.5rem; 
     }
@@ -40,10 +39,6 @@ export const ControlsContainer = styled.div`
     .filter-group {
       width: 100%;
      
-      .p-selectbutton .p-button {
-         flex-grow: 1;
-         font-size: 0.875rem; 
-      }
     }
     
     .search-group {
@@ -52,7 +47,7 @@ export const ControlsContainer = styled.div`
 
     .p-selectbutton .p-button {
         flex-grow: 1;
-        font-size: 0.8rem; 
+        font-size: 0.875rem; 
         padding: 0.5rem 0.8rem; 
     }
     

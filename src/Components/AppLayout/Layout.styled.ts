@@ -4,14 +4,14 @@ import styled from 'styled-components';
 export const LayoutWrapper = styled.div`
   max-width: 1200px; 
   margin: 2rem auto; 
-  
+  display: block;
   padding: 1rem; 
 `;
 
 export const FlexContainer = styled.div`
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 
 
  
@@ -25,9 +25,9 @@ export const FlexContainer = styled.div`
 export const MainContentColumn = styled.div`
   flex: 2; 
   min-width: 300px; 
+  
 
   @media (max-width: 768px) {
-    flex: 1; 
     min-width: unset; 
     order: 2; 
   }
@@ -37,9 +37,9 @@ export const MainContentColumn = styled.div`
 export const SidebarColumn = styled.div`
   flex: 1; 
   min-width: 250px;
+ 
 
   @media (max-width: 768px) {
-    flex: 1; 
     min-width: unset; 
     order: 1; 
   }
