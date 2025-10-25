@@ -2,6 +2,20 @@
 
 @import 'primeicons/primeicons.css' layer(primeicons);
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
 
     .p-toast-message {
@@ -28,4 +42,34 @@
         margin-top: 0.3rem;
     }
 
+}
+
+@media (max-width: 600px) {
+
+    .p-confirm-dialog {
+        width: 80vw !important;
+
+    }
+
+    /* Seleciona a área de conteúdo (mensagem) */
+    .p-confirm-dialog .p-confirm-dialog-content {
+        padding: 1rem;
+    }
+
+    /* Seleciona a mensagem principal */
+    .p-confirm-dialog .p-confirm-dialog-message {
+        font-size: 0.9rem;
+    }
+
+    /* Seleciona o rodapé onde ficam os botões */
+    .p-confirm-dialog .p-dialog-footer {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Seleciona os botões no rodapé */
+    .p-confirm-dialog .p-dialog-footer .p-button {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+
+    }
 }
