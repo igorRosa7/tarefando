@@ -49,12 +49,17 @@ export const ControlsContainer = styled.div`
     .search-group {
       width: 100%;
     }
-    @media (max-width: 768px) {
+
     .p-selectbutton .p-button {
         flex-grow: 1;
         font-size: 0.8rem; 
         padding: 0.5rem 0.8rem; 
     }
-}
-  }
+    
+    .p-inputtext::placeholder {
+        font-size: 0.8rem; 
+         }
+   }
+
+
 `;

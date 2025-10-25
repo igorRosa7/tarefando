@@ -15,7 +15,7 @@ interface AppLayoutProps {
 const AppLayout: React.FC<AppLayoutProps> = ({ mainContent, sidebar }) => {
     return (
         <LayoutWrapper>
-            <Panel header="Meu Gerenciador de Tarefas">
+            <Panel header="Gerenciador de Tarefas">
 
                 <FlexContainer>
 

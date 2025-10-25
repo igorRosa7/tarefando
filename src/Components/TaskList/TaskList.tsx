@@ -7,14 +7,27 @@ interface TaskListProps {
   tasks: Task[];
   onDeleteTask: (id: string) => void;
   onToggleComplete: (id: string) => void;
+  filterStatus: 'all' | 'pending' | 'completed';
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onToggleComplete }) => {
+
+const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onToggleComplete, filterStatus }) => {
+
+  const getEmptyMessage = () => {
+    switch (filterStatus) {
+      case 'pending':
+        return 'Nenhuma tarefa pendente encontrada.';
+      case 'completed':
+        return 'Nenhuma tarefa concluída encontrada.';
+      default: // 'all' ou qualquer outro caso
+        return 'Nenhuma tarefa cadastrada ainda.';
+    }
+  };
   return (
     <ListContainer>
       {tasks.length === 0 ? (
         <p className="empty-list-message">
-          Nenhuma tarefa cadastrada ainda.
+          {getEmptyMessage()}
         </p>
       ) : (
         tasks.map(task => (

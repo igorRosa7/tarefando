@@ -138,6 +138,7 @@ function App() {
               tasks={filteredTasks}
               onDeleteTask={handleDeleteTask}
               onToggleComplete={handleToggleComplete}
+              filterStatus={filterStatus}
             />
           </>
         }
