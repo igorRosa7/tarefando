@@ -11,7 +11,7 @@ export const ChartContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  h4 { /* Estilo para o título */
+  h4 { /* título do gráfico */
     margin-top: 0;
     margin-bottom: 1rem;
     text-align: center;

@@ -4,7 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { ControlsContainer } from './TaskControls.styled';
 
 interface TaskControlsProps {
-  filterOptions: any[]; // As opções (Todas, Pendentes, etc.) pq precisa disso?
+  filterOptions: any[]; //array de opções de filtro passado de App.tsx
   filterStatus: string;
   onFilterChange: (e: SelectButtonChangeEvent) => void;
   searchTerm: string;
@@ -38,7 +38,7 @@ const TaskControls: React.FC<TaskControlsProps> = ({
           value={searchTerm}
           onChange={onSearchChange}
           placeholder="Buscar por título ou descrição..."
-          style={{ width: '100%' }} // Faz o input preencher o 'search-group'
+          style={{ width: '100%' }} 
         />
       </div>
 

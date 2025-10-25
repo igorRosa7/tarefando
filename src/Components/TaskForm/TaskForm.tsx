@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FormContainer } from './TaskForm.styled';
-import { Button } from 'primereact/button';
 import type { RefObject } from 'react';
 import type { Toast } from 'primereact/toast';
+import { Button } from 'primereact/button';
+import { FormContainer } from './TaskForm.styled';
 
 interface TaskFormProps {
-  onAddTask: (title: string, description: string) => void;
+  onAddTask: (title: string, description: string) => void; // função de callback passada pelo App.tsx
   toastRef: RefObject<Toast | null>;
 }
 
@@ -27,7 +27,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, toastRef }) => {
       });
       return;
     }
-
+    //se passou na validação, chama a função de callback para adicionar a task
     onAddTask(title, description);
 
     setTitle('');

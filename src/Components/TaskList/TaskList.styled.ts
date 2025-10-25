@@ -5,7 +5,7 @@ export const ListContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adiciona um espaço entre os TaskItems */
+  gap: 10px; /* adiciona um espaço entre os TaskItems */
 
   .empty-list-message {
     text-align: center;

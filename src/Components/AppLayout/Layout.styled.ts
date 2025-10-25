@@ -13,8 +13,6 @@ export const FlexContainer = styled.div`
   gap: 1.5rem;
   flex-wrap: wrap;
 
-
- 
   @media (max-width: 768px) {
     flex-direction: column; 
     gap: 1rem; 
@@ -25,8 +23,7 @@ export const FlexContainer = styled.div`
 export const MainContentColumn = styled.div`
   flex: 2; 
   min-width: 300px; 
-  
-
+ 
   @media (max-width: 768px) {
     min-width: unset; 
     order: 2; 
@@ -38,7 +35,6 @@ export const SidebarColumn = styled.div`
   flex: 1; 
   min-width: 250px;
  
-
   @media (max-width: 768px) {
     min-width: unset; 
     order: 1; 

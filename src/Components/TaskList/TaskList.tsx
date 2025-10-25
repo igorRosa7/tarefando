@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Task } from '../../types/task';
+import type { Task } from '../../types/TaskTypes';
 import { ListContainer } from './TaskList.styled';
 import TaskItem from '../TaskItem/TaskItem';
 
@@ -19,15 +19,16 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onDeleteTask, onToggleComple
         return 'Nenhuma tarefa pendente encontrada.';
       case 'completed':
         return 'Nenhuma tarefa concluída encontrada.';
-      default: // 'all' ou qualquer outro caso
+      default: // 'all' 
         return 'Nenhuma tarefa cadastrada ainda.';
     }
   };
+  //apenas irá retornar essas mensagens acima quando a lista estiver vazia, dependendo do filtro aplicado
   return (
     <ListContainer>
       {tasks.length === 0 ? (
         <p className="empty-list-message">
-          {getEmptyMessage()}
+          {getEmptyMessage()} 
         </p>
       ) : (
         tasks.map(task => (

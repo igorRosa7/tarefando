@@ -1,9 +1,9 @@
 import React from 'react';
-import  type { Task } from '../../types/task';
+import  type { Task } from '../../types/TaskTypes';
 import { ItemContainer } from './TaskItem.styled';
 import { Button } from 'primereact/button';
 
-// Esta interface recebe o objeto task e as funções de manipulação de tarefas como props
+// Esta interface recebe o objeto task e as funções de manipulação de tarefas como props. Elas vieram de App > TaskList
 interface TaskItemProps {
   task: Task;
   onDeleteTask: (id: string) => void;

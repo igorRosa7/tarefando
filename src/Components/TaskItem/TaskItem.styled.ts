@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-// O ItemContainer aceitará uma prop $isCompleted para poder alterar seu estilo com base no status da tarefa, se for true ou false
+// o ItemContainer aceitará uma prop $isCompleted para poder alterar seu estilo com base no status da tarefa, se for true ou false
 export const ItemContainer = styled.div<{ $isCompleted: boolean }>`
   background-color: var(--surface-card); 
   border: 1px solid var(--surface-border);

@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# Gerenciador de Tarefas Pessoais (React To-Do App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação Front-end React + TypeScript para Gerenciar Tarefas Pessoais com filtros, busca, visualização de dados e persistência local. Demo disponível na Vercel.
 
-Currently, two official plugins are available:
+## 🚀 Demo Online
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="1160" height="941" alt="screenshot-app" src="https://github.com/user-attachments/assets/5a647cbe-d4b9-4682-9bcf-513fb11189fe" />
 
-## React Compiler
+Você pode testar a aplicação aqui: [Link para o app](https://tarefando-gamma.vercel.app/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Funcionalidades
 
-## Expanding the ESLint configuration
+* **Adicionar Tarefas:** Formulário para criar novas tarefas com título (obrigatório) e descrição.
+* **Listar Tarefas:** Exibe a lista de tarefas com título, descrição, status e data de criação.
+* **Gerenciar Status:** Permite marcar tarefas como concluídas ou pendentes, com destaque visual para as concluídas.
+* **Excluir Tarefas:** Botão para excluir tarefas com diálogo de confirmação.
+* **Contador:** Exibe a contagem de tarefas pendentes e concluídas (atualizado em tempo real com a busca).
+* **Filtros:** Permite filtrar a lista de tarefas por status (Todas, Pendentes, Concluídas).
+* **Busca:** Campo para buscar tarefas por título ou descrição.
+* **Persistência Local:** As tarefas são salvas no `localStorage` do navegador, mantendo os dados entre sessões.
+* **Feedback Visual:** Notificações (Toasts) para adição de tarefas, erros de validação e exclusão.
+* **Visualização de Dados:** Gráfico de rosca (doughnut chart) mostrando a proporção de tarefas pendentes vs. concluídas (baseado na busca atual).
+* **Interface Responsiva:** Layout adaptado para funcionar em desktops e dispositivos móveis.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tecnologias Utilizadas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **React:** Biblioteca principal para construção da interface.
+* **TypeScript:** Adiciona tipagem estática e outros recursos ao JavaScript para maior robustez do código.
+* **Vite:** Ferramenta de build para desenvolvimento front-end.
+* **Styled Components:** Biblioteca para estilização encapsulada e dinâmica.
+* **PrimeReact:** Biblioteca de componentes UI para React, utilizada para a interface e tema visual.
+* **Chart.js:** Biblioteca para criação de gráficos (utilizada pelo componente Chart do PrimeReact).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📁 Estrutura de Pastas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+└── seu-repositorio/   
+    ├── public/    
+    ├── src/  
+    │ ├── Components/     
+    │ ├── types/          
+    │ ├── App.tsx        
+    │ ├── main.tsx        
+    │ └── index.css          
+    └── package.json              
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔧 Configuração de ESLint
+
+O projeto utiliza ESLint para garantir a qualidade e a consistência do código. As configurações estão definidas no arquivo `eslint.config.js` (ou similar) na raiz do projeto, utilizando conjuntos de regras recomendadas para JavaScript, TypeScript, React Hooks e Vite. Quaisquer ajustes nas regras de linting devem ser feitos neste arquivo central.
+
+## ⚙️ Como Executar o Projeto Localmente
+
+**Pré-requisitos:**
+
+* Node.js (versão 18 ou superior recomendada)
+* npm ou Yarn
+
+**Passos:**
+
+1.  **Obtenha o código:** Clone este repositório ou faça o download do ZIP.
+
+2.  **Navegue até a pasta do projeto:**
+    ```bash
+    cd Tarefando
+    ``` 
+
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+4.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm run dev
+    ```
+
+5.  Abra seu navegador e acesse ou a porta indicada.
+
+---

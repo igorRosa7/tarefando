@@ -2,41 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
 import { ChartContainer } from './TaskStatsChart.styled';
 
+//tipos das props esperadas, que estão sendo passadas de App.tsx via pendingCountForChart e completedCountForChart
 interface TaskStatsChartProps {
     pendingCount: number;
     completedCount: number;
 }
 
 const TaskStatsChart: React.FC<TaskStatsChartProps> = ({ pendingCount, completedCount }) => {
-    
-    // Estado para os dados do gráfico
+
     const [chartData, setChartData] = useState<any>(null);
 
-    // Estado para as opções de configuração
-    const [chartOptions, setChartOptions] = useState<any>(null);
+    // Não estava conseguindo utilizar a mesma cor do tema soho do PrimeReact para a fatia do gráfico, então peguei direto das variáveis CSS na função abaixo.
+    const documentStyle = getComputedStyle(document.documentElement);
 
-    // useEffect para recalcular QUANDO as contagens (props) mudarem
+    // useEffect para recalcular quando as contagens (props) mudarem
     useEffect(() => {
 
-        const documentStyle = getComputedStyle(document.documentElement);
-
-        // Usaremos --primary-color (geralmente azul/roxo) para Pendentes
         const pendingColor = documentStyle.getPropertyValue('--primary-color').trim() || '#6366F1';
-
-        // Usaremos uma cor de "sucesso" (verde) para Concluídas
         const completedColor = documentStyle.getPropertyValue('--green-500').trim() || '#22C55E';
 
         // Estrutura de dados exigida pelo Chart.js (via PrimeReact)
         const data = {
-            labels: ['Pendentes', 'Concluídas'], 
+            labels: ['Pendentes', 'Concluídas'],
             datasets: [
                 {
-                    data: [pendingCount, completedCount], 
-                    backgroundColor: [ // Cores das fatias
+                    data: [pendingCount, completedCount],
+                    backgroundColor: [
                         pendingColor,
                         completedColor
                     ],
-                    hoverBackgroundColor: [ // Cores ao passar o mouse (opcional)
+                    hoverBackgroundColor: [
                         pendingColor,
                         completedColor
                     ]
@@ -44,38 +39,37 @@ const TaskStatsChart: React.FC<TaskStatsChartProps> = ({ pendingCount, completed
             ]
         };
 
-        // Opções de configuração do Chart.js
-        const options = {
-            // 'cutout' define o tamanho do "buraco" no meio.
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        color: documentStyle.getPropertyValue('--text-color').trim() || '#495057'
-                    }
-                }
-            }
-        };
 
-        // Atualiza os estados que serão passados para o <Chart />
+
         setChartData(data);
-        setChartOptions(options);
 
-        // O array de dependências: refaz o cálculo se as contagens mudarem
+
     }, [pendingCount, completedCount]);
 
-   
-   if ((pendingCount === 0 && completedCount === 0) || !chartData || !chartOptions) {
-    return null; 
-  }
+    // configuração do gráfico
+    const options = {
+        cutout: '60%',
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    color: documentStyle.getPropertyValue('--text-color').trim() || '#495057'
+                }
+            }
+        }
+    };
+
+
+    if ((pendingCount === 0 && completedCount === 0) || !chartData) {
+        return null;
+    }
     return (
         <ChartContainer>
             <h4>Visão Geral</h4>
             <Chart
-                type="doughnut" // Define o tipo de gráfico
+                type="doughnut" // define o tipo de gráfico
                 data={chartData}
-                options={chartOptions}
+                options={options}
             />
         </ChartContainer>
     );
