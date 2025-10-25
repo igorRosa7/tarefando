@@ -1,4 +1,4 @@
-# Gerenciador de Tarefas Pessoais (React To-Do App)
+# Gerenciador de Tarefas Pessoais (React + Typescript)
 
 Aplicação Front-end React + TypeScript para Gerenciar Tarefas Pessoais com filtros, busca, visualização de dados e persistência local. Demo disponível na Vercel.
 
